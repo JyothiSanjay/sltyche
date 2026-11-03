@@ -1,7 +1,6 @@
 {
   "name": "sloan-tyche",
   "private": true,
-  "homepage": ".",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
