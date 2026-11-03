@@ -1,4 +1,4 @@
-import logo from "/assets/logo.png";
+import {logo} from "/assets/logo.png";
 export default function Logo({ className = "h-14 w-14" }) {
   return (
     <img src={logo} alt="Sloan Tyche Logo" className={className} />

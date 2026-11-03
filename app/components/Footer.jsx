@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mail, MapPin, Phone } from "lucide-react";
-import Logo from "./Logo";
+import Logo from "../components/Logo";
 import { site } from "../data/content";
 
 export default function Footer() {
