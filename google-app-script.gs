@@ -12,8 +12,8 @@
  * 6. Set it as NEXT_PUBLIC_GOOGLE_SCRIPT_URL in your environment — done.
  */
 
-var RECIPIENT = "info@sloantyche.com";
-var SHEET_ID = ""; // optional: paste a Google Sheet ID to log every enquiry
+var RECIPIENT = "sloan.tyche@gmail.com";
+var SHEET_ID = "https://docs.google.com/spreadsheets/d/1tPX9Rvta5udkakZz7Fr1IowF4-88rYy0qHKpYnxSs-0/edit?gid=0#gid=0"; // optional: paste a Google Sheet ID to log every enquiry
 
 function doPost(e) {
   var d = e.parameter;
