@@ -1,7 +1,11 @@
+/** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === "production";
 const nextConfig = {
-  output: 'export', // Tells Next.js to generate static files
+  output: "export",
+  basePath: isProduction ? "/sltyche" : "",
+  
   images: {
-    unoptimized: true, // Required for static exports
+    unoptimized: true,
   },
 };
 
