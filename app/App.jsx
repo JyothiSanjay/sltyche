@@ -1,6 +1,6 @@
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import { AboutBlock, ServicesSection, ModulesStrip, TalentBlock, WhySection, IndustriesSection, StepsSection, MethodologySection, CareersSection, ContactSection } from "@/components/blocks";
+import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
+import { AboutBlock, ServicesSection, ModulesStrip, TalentBlock, WhySection, IndustriesSection, StepsSection, MethodologySection, CareersSection, ContactSection } from "./components/blocks.jsx";
 import image from "./favicon.ico";
 
 

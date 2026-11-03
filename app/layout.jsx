@@ -1,8 +1,8 @@
 import "./global.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
-import { site } from "@/data/content";
+import Nav from "./components/Nav.jsx";
+import Footer from "./components/Footer.jsx";
+import SmoothScroll from "./components/SmoothScroll.jsx";
+import { site } from "./data/content.js";
 
 export const metadata = {
   metadataBase: new URL(site.url),

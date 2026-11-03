@@ -1,4 +1,4 @@
-import { site } from "@/data/content";
+import { site } from "./data/content";
 
 export default function robots() {
   return {
