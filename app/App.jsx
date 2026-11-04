@@ -14,8 +14,8 @@ export default function App() {
   return (
     <>
       <Hero
-        primary={{ label: "Let's Discuss Your SAP Requirements", href: "#contact" }}
-        secondary={{ label: "Explore Services", href: "#services" }}
+        primary={{ label: "Let's Discuss Your SAP Requirements", href: "contact" }}
+        secondary={{ label: "Explore Services", href: "services" }}
       />
       <Marquee />
       <AboutBlock />

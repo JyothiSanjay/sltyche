@@ -7,63 +7,64 @@ import { site } from "../data/content";
 import Logo from "./Logo";
 
 const LINKS = [
-  { label: "Home", href: "/home", anchor: "home" },
-  { label: "About", href: "/about", anchor: "about" },
-  { label: "Services", href: "/services", anchor: "services" },
-  { label: "Industries", href: "/industries", anchor: "industries" },
-  { label: "Engagement", href: "/engagement", anchor: "engagement" },
-  { label: "Careers", href: "/careers", anchor: "careers" },
-  { label: "Contact", href: "/contact", anchor: "contact" },
+  { label: "Home",  anchor: "home" },
+  { label: "About", anchor: "about" },
+  { label: "Services",  anchor: "services" },
+  { label: "Industries",  anchor: "industries" },
+  { label: "Engagement",  anchor: "engagement" },
+  { label: "Careers",  anchor: "careers" },
+  { label: "Contact",  anchor: "contact" },
 ];
 
-export default function Nav() {
-  const [open, setOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState(LINKS[0].anchor);
-  const [active, setActive] = useState(LINKS[0].anchor);
+export default function Nav({open, setOpen, selectedMenu, setSelectedMenu, active, setActive, scrollToSection}) {
+  // const [open, setOpen] = useState(false);
+  // const [selectedMenu, setSelectedMenu] = useState(LINKS[0].anchor);
+  // const [active, setActive] = useState(LINKS[0].anchor);
   const contactHref = "contact";
 
-  useEffect(() => {
-    const sections = document.querySelectorAll("section");
+  // useEffect(() => {
+  //   const sections = document.querySelectorAll("section");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // console.log(entry.target.id);
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         // console.log(entry.target.id);
 
-          if (entry.isIntersecting) {
-            setSelectedMenu(entry.target.id);
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
+  //         if (entry.isIntersecting) {
+  //           setSelectedMenu(entry.target.id);
+  //           setActive(entry.target.id);
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.6 }
+  //   );
 
-    sections.forEach((section) => {
-      if (section.id) observer.observe(section);
-    });
+  //   sections.forEach((section) => {
+  //     if (section.id) observer.observe(section);
+  //   });
 
-    return () => observer.disconnect();
-  }, []);
+  //   return () => observer.disconnect();
+  // }, []);
 
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
+  // const scrollToSection = (e, id) => {
+  //   e.preventDefault();
 
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/80 backdrop-blur-xl" data-testid="site-nav">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href={"/"} className="flex items-center gap-3" data-testid="nav-logo-link" onClick={() => setOpen(false)}>
+        <a key="logo"
+                onClick={(e) => { scrollToSection(e, 'home'); setSelectedMenu('home'); }} className="flex items-center gap-3 cursor-pointer" data-testid="nav-logo-link">
           <Logo />
-          <span className="font-display text-5xl font-bold tracking-tight text-slate-50">
+          <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-50">
             {site.short}
           </span>
-        </Link>
+        </a>
 
         <div className="hidden items-center gap-8 lg:flex">
           {LINKS.map((l) => (

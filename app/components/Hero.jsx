@@ -1,21 +1,29 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { hero, site } from "../data/content";
+import Image from "next/image";
 
 const EASE = [0.22, 1, 0.36, 1];
 
-export default function Hero({ primary = { label: "Let's Discuss Your SAP Requirements", href: "/contact" }, secondary = { label: "Explore Services", href: "/services" } }) {
+export default function Hero({ primary = { label: "Let's Discuss Your SAP Requirements", href: "contact" }, secondary = { label: "Explore Services", href: "services" } }) {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 700], [0, 180]);
 
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section id="home" className="noise relative w-full flex min-h-[100svh] items-center overflow-hidden" data-testid="hero-section">
       <motion.div style={{ y }} className="absolute inset-0 -z-10">
-        <img
-          src="https://images.unsplash.com/photo-1558627563-3e383cddc94a?crop=entropy&cs=srgb&fm=jpg&q=85"
+        <Image
+          src="image4.png" width={1920} height={1080}
           alt="Enterprise technology architecture"
           className="h-[120%] w-full object-cover opacity-30"
         />
@@ -65,15 +73,15 @@ export default function Hero({ primary = { label: "Let's Discuss Your SAP Requir
           transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <Link href={primary.href} data-testid="hero-primary-cta"
-            className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-ink transition-all duration-300 hover:shadow-[0_0_36px_rgba(0,229,255,0.35)]">
+          <a onClick={(e) => scrollToSection(e, primary.href)} data-testid="hero-primary-cta"
+            className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-ink transition-all duration-300 cursor-pointer hover:shadow-[0_0_36px_rgba(0,229,255,0.35)]">
             {primary.label}
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-          <Link href={secondary.href} data-testid="hero-secondary-cta"
-            className="rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-slate-200 transition-colors duration-300 hover:border-accent/50 hover:text-accent">
+            <ArrowRight size={16} className="transition-transform  duration-300 group-hover:translate-x-1" />
+          </a>
+          <a onClick={(e) => scrollToSection(e, secondary.href)} data-testid="hero-secondary-cta"
+            className="rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-slate-200 transition-colors cursor-pointer duration-300 hover:border-accent/50 hover:text-accent">
             {secondary.label}
-          </Link>
+          </a>
         </motion.div>
 
         <motion.div

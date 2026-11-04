@@ -1,10 +1,12 @@
+"use client";
 import "./global.css";
 import Nav from "./components/Nav.jsx";
 import Footer from "./components/Footer.jsx";
 import SmoothScroll from "./components/SmoothScroll.jsx";
 import { site } from "./data/content.js";
+import { useEffect, useState } from "react";
 
-export const metadata = {
+ const metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.name} | SAP Consulting, Staffing & Managed Services`,
@@ -25,7 +27,54 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+const LINKS = [
+{ label: "Home",  anchor: "home" },
+{ label: "About", anchor: "about" },
+{ label: "Services",  anchor: "services" },
+{ label: "Industries",  anchor: "industries" },
+{ label: "Engagement",  anchor: "engagement" },
+{ label: "Careers",  anchor: "careers" },
+{ label: "Contact",  anchor: "contact" },
+];
 export default function RootLayout({ children }) {
+  const [open, setOpen] = useState(false);
+    const [selectedMenu, setSelectedMenu] = useState(LINKS[0].anchor);
+    const [active, setActive] = useState(LINKS[0].anchor);
+    const contactHref = "contact";
+
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // console.log(entry.target.id);
+
+          if (entry.isIntersecting) {
+            setSelectedMenu(entry.target.id);
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => {
+      if (section.id) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <html lang="en" className="dark">
       <head>
@@ -53,9 +102,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <SmoothScroll>
-          <Nav />
+          <Nav  active={active} setActive={setActive} open={open} setOpen={setOpen} selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} scrollToSection={scrollToSection} />
           <main>{children}</main>
-          <Footer />
+          <Footer  active={active} setActive={setActive} open={open} setOpen={setOpen} selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} scrollToSection={scrollToSection} />
         </SmoothScroll>
       </body>
     </html>

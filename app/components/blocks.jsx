@@ -6,6 +6,7 @@ import Reveal from "./Reveal";
 import ServicesBento from "./ServicesBento";
 import ContactForm from "./ContactForm";
 import { about, industries, modules, roles, steps, talent, values, why, perks, engagementModels, methodology, site } from "../data/content";
+import Image from "next/image";
 
 export function SectionHead({ kicker, title, body }) {
   return (
@@ -50,18 +51,18 @@ export function AboutBlock({ preview = false }) {
               </Reveal>
             </div>
           )}
-          {preview && (
+          {/* {preview && (
             <Reveal delay={0.15}>
               <Link href="/about" data-testid="about-more-link" className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent">
                 Vision, Mission & Values <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Reveal>
-          )}
+          )} */}
         </div>
         <Reveal delay={0.1}>
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
-            <img
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?crop=entropy&cs=srgb&fm=jpg&q=85"
+            <Image
+              src="/image1.png" width={800} height={600}
               alt="Sloan Tyche SAP consulting team collaborating"
               className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
             />
@@ -238,8 +239,8 @@ export function CareersSection({ preview = false }) {
         </div>
         <Reveal delay={0.1}>
           <div className="relative overflow-hidden rounded-2xl border border-white/10">
-            <img
-              src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?crop=entropy&cs=srgb&fm=jpg&q=85"
+            <Image
+              src="/image3.png" width={800} height={600}
               alt="SAP professionals collaborating at Sloan Tyche"
               className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
             />
@@ -284,23 +285,23 @@ export function ContactSection({ id = "contact" }) {
   );
 }
 
-export function CTABand() {
-  return (
-    <section className="border-t border-white/10 bg-ink-deep/40" data-testid="cta-band">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 lg:flex-row lg:items-center">
-        <Reveal>
-          <h2 className="max-w-xl font-display text-2xl font-bold leading-tight tracking-tight text-slate-50 sm:text-3xl">
-            Let's Discuss Your SAP Requirements
-          </h2>
-          <p className="mt-3 max-w-lg text-sm text-slate-400">Partner with us to accelerate your SAP journey — from a single consultant to end-to-end program delivery.</p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <Link href="/contact" data-testid="cta-contact-button"
-            className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-ink transition-all duration-300 hover:shadow-[0_0_36px_rgba(0,229,255,0.35)]">
-            Talk to Our SAP Team <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
+// export function CTABand() {
+//   return (
+//     <section className="border-t border-white/10 bg-ink-deep/40" data-testid="cta-band">
+//       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 lg:flex-row lg:items-center">
+//         <Reveal>
+//           <h2 className="max-w-xl font-display text-2xl font-bold leading-tight tracking-tight text-slate-50 sm:text-3xl">
+//             Let's Discuss Your SAP Requirements
+//           </h2>
+//           <p className="mt-3 max-w-lg text-sm text-slate-400">Partner with us to accelerate your SAP journey — from a single consultant to end-to-end program delivery.</p>
+//         </Reveal>
+//         <Reveal delay={0.1}>
+//           <Link href="/contact" data-testid="cta-contact-button"
+//             className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-ink transition-all duration-300 hover:shadow-[0_0_36px_rgba(0,229,255,0.35)]">
+//             Talk to Our SAP Team <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+//           </Link>
+//         </Reveal>
+//       </div>
+//     </section>
+//   );
+// }

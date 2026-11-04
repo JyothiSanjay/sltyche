@@ -1,22 +1,30 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Logo from "../components/Logo";
 import { site } from "../data/content";
 
-export default function Footer() {
+export default function Footer({open, setOpen, selectedMenu, setSelectedMenu, active, setActive, scrollToSection}) {
   const pathname = usePathname();
-  const spa = pathname.startsWith("/one-page");
-  const pages = [
-    { label: "Services", href: spa ? "/one-page#services" : "/services" },
-    { label: "Industries", href: spa ? "/one-page#industries" : "/industries" },
-    { label: "Engagement", href: spa ? "/one-page#engagement" : "/engagement" },
-    { label: "Careers", href: spa ? "/one-page#careers" : "/careers" },
-    { label: "About", href: spa ? "/one-page#about" : "/about" },
-    { label: "Contact", href: spa ? "/one-page#contact" : "/contact" },
-  ];
+  // const spa = pathname.startsWith("/one-page");
+  // const pages = [
+  //   { label: "Services", href: spa ? "/one-page#services" : "/services" },
+  //   { label: "Industries", href: spa ? "/one-page#industries" : "/industries" },
+  //   { label: "Engagement", href: spa ? "/one-page#engagement" : "/engagement" },
+  //   { label: "Careers", href: spa ? "/one-page#careers" : "/careers" },
+  //   { label: "About", href: spa ? "/one-page#about" : "/about" },
+  //   { label: "Contact", href: spa ? "/one-page#contact" : "/contact" },
+  // ];
+const pages = [
+  { label: "Home",  anchor: "home" },
+  { label: "About", anchor: "about" },
+  { label: "Services",  anchor: "services" },
+  { label: "Industries",  anchor: "industries" },
+  { label: "Engagement",  anchor: "engagement" },
+  { label: "Careers",  anchor: "careers" },
+  { label: "Contact",  anchor: "contact" },
+];
 
   return (
     <footer className="border-t border-white/10 bg-ink-deep" data-testid="site-footer">
@@ -35,9 +43,11 @@ export default function Footer() {
           <ul className="mt-5 space-y-3">
             {pages.map((p) => (
               <li key={p.label}>
-                <Link href={p.href} data-testid={`footer-${p.label.toLowerCase()}-link`} className="text-sm text-slate-400 transition-colors hover:text-accent">
+                 <a
+                key={p.label}
+                onClick={(e) => { scrollToSection(e, p.anchor); setSelectedMenu(p.anchor); }} data-testid={`footer-${p.label.toLowerCase()}-link`} className="text-sm cursor-pointer text-slate-400 transition-colors hover:text-accent">
                   {p.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
